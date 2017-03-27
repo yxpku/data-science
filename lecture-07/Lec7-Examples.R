@@ -33,7 +33,7 @@
     library(plotROC)
   
   #TRAIN MODEL
-  #Fit decision tree under default assumptions -- cp = 0
+  #Fit decision tree under default assumptions -- cp = 0.01
     fit <- rpart(coverage ~ age + wage + cit + mar + educ + race, 
                  method = "class", data = train)
   
@@ -88,7 +88,7 @@
   
   #Plot
     grid.arrange(roc.train, roc.test, ncol = 2)
-    
+    calc_auc(roc.test)
 ##################
 ##RANDOM FORESTS##
 ##################  
@@ -130,5 +130,9 @@
   
   #AUC
   calc_auc(roc.rf)
+  
+  # variable of importance (highest numbers to split)
+  fit.rf$importance
 
+  
   
